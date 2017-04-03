@@ -1,5 +1,7 @@
 package spohlmann.mobiledevices.devogellaandroidsqlitefirst;
 
+import android.media.Rating;
+
 /**
  * Created by spohlmann on 3/31/2017.
  * Class sets up the Comment object. Uses a get and set for the comment and Id
@@ -8,8 +10,10 @@ package spohlmann.mobiledevices.devogellaandroidsqlitefirst;
 public class Comment {
     // This sets the constant for the id of the comment object
     private long id;
-    //This sets the constant for the comment of the comment object
+    //This sets the constant for the comment column of the comment object
     private String comment;
+    //This sets the constant for the rating column of the comment object
+    private String rating;
 
     /*
      * This gets the Id
@@ -39,6 +43,20 @@ public class Comment {
     public void setComment(String comment) {
         this.comment = comment;
     }
+    /*
+     * This gets the rating
+     * @return rating
+     */
+    public String getRating() {
+        return rating;
+    }
+    /*
+     * This sets the rating to the parameter passed in
+     * @param rating
+     */
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
 
     /*
      * This methods displays the comment as a String
@@ -46,6 +64,6 @@ public class Comment {
      */
     @Override
     public String toString() {
-        return comment;
+        return (comment + " - " + rating);
     }
 }

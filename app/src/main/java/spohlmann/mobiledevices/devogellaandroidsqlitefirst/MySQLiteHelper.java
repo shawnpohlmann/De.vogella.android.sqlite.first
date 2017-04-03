@@ -16,17 +16,19 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     public static final String COLUMN_ID = "_id";
     // This sets a constant string value for Comments column which is used in the DATABASE_CREATE STRING to create the table
     public static final String COLUMN_COMMENT = "comment";
-    // This sets a constant string value for the database name which is used in the DATABASE_CREATE STRING to create the table
+    // This sets a constant string value for Rating column which is used in the DATABASE_CREATE STRING to create the table
+    public static final String COLUMN_RATING = "rating";
 
+    // This sets a constant string value for the database name which is used in the DATABASE_CREATE STRING to create the table
     private static final String DATABASE_NAME = "commments.db";
     // This sets a DATABASE_VERSION constant that is used when the MySQLiteHelper object is created
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // Database creation sql statement by taking in the constants defined above to form a string
     private static final String DATABASE_CREATE = "create table "
             + TABLE_COMMENTS + "( " + COLUMN_ID
             + " integer primary key autoincrement, " + COLUMN_COMMENT
-            + " text not null);";
+            + " text not null, " + COLUMN_RATING + " text not null);";
 
     // Creates the MySQLiteHelper object pulling in the DATABASE_NAME and DATABASE_VERSION constants defined above
     public MySQLiteHelper(Context context) {

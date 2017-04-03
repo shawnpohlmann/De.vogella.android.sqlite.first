@@ -7,6 +7,8 @@ import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * Created by spohlmann on 3/31/2017.
@@ -14,6 +16,10 @@ import android.widget.ArrayAdapter;
  */
 public class TestDatabaseActivity extends ListActivity {
     private CommentsDataSource datasource;
+    EditText etRating;
+    TextView tvRating;
+    EditText etComment;
+    TextView tvComment;
 
     /*
      * Runs when the app is first started
@@ -37,6 +43,11 @@ public class TestDatabaseActivity extends ListActivity {
         ArrayAdapter<Comment> adapter = new ArrayAdapter<Comment>(this,
                 android.R.layout.simple_list_item_1, values);
         setListAdapter(adapter);
+
+        etRating = (EditText) findViewById(R.id.etRating);
+        tvRating = (TextView) findViewById(R.id.tvRating);
+        etComment = (EditText) findViewById(R.id.etComment);
+        tvComment = (TextView) findViewById(R.id.tvComment);
     }
 
     /*
@@ -48,10 +59,13 @@ public class TestDatabaseActivity extends ListActivity {
         Comment comment = null;
         switch (view.getId()) {
             case R.id.add:
-                String[] comments = new String[] { "Cool", "Very nice", "Hate it" };
-                int nextInt = new Random().nextInt(3);
+                //Commented out for the challenge problems
+                //String[] comments = new String[] { "Cool", "Very nice", "Hate it" };
+                String comments = etComment.getText().toString();
+                String ratings  = etRating.getText().toString();
+                //int nextInt = new Random().nextInt(3);
                 // save the new comment to the database
-                comment = datasource.createComment(comments[nextInt]);
+                comment = datasource.createComment(comments, ratings);
                 adapter.add(comment);
                 break;
             case R.id.delete:
@@ -60,6 +74,7 @@ public class TestDatabaseActivity extends ListActivity {
                     datasource.deleteComment(comment);
                     adapter.remove(comment);
                 }
+
                 break;
         }
         adapter.notifyDataSetChanged();
